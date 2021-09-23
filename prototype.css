@@ -1,0 +1,10 @@
+.popup {
+    border:  black 1px;
+    padding: 2em;
+    color: black;
+    position:absolute;
+    /*z-index: 2000;*/
+    top:     0px;
+    left:    0px;
+    display: none;
+}
