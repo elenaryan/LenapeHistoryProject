@@ -10,32 +10,41 @@
      Demonstrating the functionality of image mapping with a simple example
 -->
 <html lang="en">
-<script src="prototype.js" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js" ></script>
 <link rel="stylesheet" href="prototype.css"> <!--style file-->
 
 
 <head>
 <title>prototype</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script src = "https://d3js.org/d3.v4.min.js"></script>
 <style type="text/css">
 /* the CSS goes inside the style tags */
 </style>
 
 </head>
 <body>
+
+  <input type="button" value="Click me!" onclick="displaymessage()" /> 
+
+<script>
+  function displaymessage()
+{
+  alert("Hello World!");
+}
+</script>
+  <!--
     <img src="Summer.png" alt="summer" usemap="#summer">
 
 <map name="summer">
-  <!--area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm"-->
+  <--area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm"
   <area shape="rect" coords="153,1464,396,1669" alt="root" href="roottest" onMouseOver="writeText('wassup');" onMouseOut="pop(event);">
-  <!--area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm"-->
+  <--area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm"
 
 </map>
 <div id="rootpop" class="root, popup">
     <h3>ROOT</h3>
     <p>Here is some root information</p>
 </div>
-
+-->
 </body>
 </html>

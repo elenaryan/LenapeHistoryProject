@@ -1,3 +1,6 @@
+"use strict";
+import * as d3 from "d3";
+
 /* 
 ** Elena Ryan
 ** Lenape History Project
@@ -7,6 +10,11 @@
 ** init 8/20/21
 */
 
+function displaymessage()
+{
+  alert("Hello World!");
+}
+/** 
 
 function pop(e) { //function called by first hotspot
 
@@ -35,5 +43,5 @@ function pop(e) { //function called by first hotspot
  }
 
  function writeText(txt) {
-    document.getElementById("roottest").innerHTML = txt;
-}
+    document.getElementById("rootpop").innerHTML = txt;
+}**/
