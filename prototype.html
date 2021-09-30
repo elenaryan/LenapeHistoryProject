@@ -13,38 +13,63 @@
 <script src="https://d3js.org/d3.v4.min.js" ></script>
 <link rel="stylesheet" href="prototype.css"> <!--style file-->
 
-
 <head>
+
 <title>prototype</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 <style type="text/css">
-/* the CSS goes inside the style tags */
+
 </style>
 
-</head>
+</head><!--head-->
 <body>
 
-  <input type="button" value="Click me!" onclick="displaymessage()" /> 
+  <input style="position:absolute;" type="button" value="Click me!" onclick="displaymessage()" />
 
+
+  <svg>
+    <circle style="fill: #69b3a2" stroke="black" cx=50 cy=50 r=40></circle>
+  </svg>
+
+  <svg>
+    <polygon points="0,0 100,30 20,30 20,20 10,15 0,20"></polygon>
+  </svg>
+
+<div class="mySample" style="position:absolute;">My Text</div>
+
+<div id="my_dataviz"></div>
 <script>
-  function displaymessage()
-{
-  alert("Hello World!");
-}
-</script>
-  <!--
-    <img src="Summer.png" alt="summer" usemap="#summer">
 
-<map name="summer">
-  <--area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm"
-  <area shape="rect" coords="153,1464,396,1669" alt="root" href="roottest" onMouseOver="writeText('wassup');" onMouseOut="pop(event);">
-  <--area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm"
+  // Start by creating the svg area
+  var svg1 = d3.select("#my_dataviz")
+    .append("svg")
+      .attr("width", 400)
+      .attr("height", 400)
+  
+  // Append a circle
+  svg1.append("circle")
+    .attr("id", "circleBasicTooltip")
+    .attr("cx", 150)
+    .attr("cy", 200)
+    .attr("r", 40)
+    .attr("fill", "#69b3a2")
+  
+  // create a tooltip
+  var tooltip1 = d3.select("#my_dataviz")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .text("I'm a circle!");
+  
+  //
+  d3.select("#circleBasicTooltip")
+    .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
+    .on("mousemove", function(){return tooltip1.style("top", (event.pageY)+"px").style("left",(event.pageX)+"px");})
+    .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
+  
+  </script>
 
-</map>
-<div id="rootpop" class="root, popup">
-    <h3>ROOT</h3>
-    <p>Here is some root information</p>
-</div>
--->
-</body>
-</html>
+</body><!--body-->
+</html><!--html-->
