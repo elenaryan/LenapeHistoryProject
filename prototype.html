@@ -20,24 +20,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <style type="text/css">
-
+.treeTip {
+  color: red;
+  background-color: white;
+}
 </style>
 
 </head><!--head-->
 <body>
 
-  <input style="position:absolute;" type="button" value="Click me!" onclick="displaymessage()" />
-
-
-  <svg>
-    <circle style="fill: #69b3a2" stroke="black" cx=50 cy=50 r=40></circle>
-  </svg>
-
-  <svg>
-    <polygon points="0,0 100,30 20,30 20,20 10,15 0,20"></polygon>
-  </svg>
-
-<div class="mySample" style="position:absolute;">My Text</div>
 
 <div id="my_dataviz"></div>
 <script>
@@ -56,20 +47,31 @@
     .attr("r", 40)
     .attr("fill", "#69b3a2")
   
+  svg1.append("circle")
+    .attr("id", "anothaOne")
+    .attr("cx", 200)
+    .attr("cy", 150)
+    .attr("r", 40)
+    .attr("fill", "#fe23a2")
   // create a tooltip
   var tooltip1 = d3.select("#my_dataviz")
     .append("div")
       .style("position", "absolute")
       .style("visibility", "hidden")
-      .text("I'm a circle!");
+      .attr("class", "treeTip")
+      .text("testing");
   
   //
   d3.select("#circleBasicTooltip")
     .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
-    .on("mousemove", function(){return tooltip1.style("top", (event.pageY)+"px").style("left",(event.pageX)+"px");})
+    .on("mousemove", function(){return tooltip1.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
     .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
   
   </script>
 
 </body><!--body-->
+
+
+
+
 </html><!--html-->
