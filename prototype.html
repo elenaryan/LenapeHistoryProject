@@ -21,8 +21,12 @@
 
 <style type="text/css">
 .treeTip {
-  color: red;
-  background-color: white;
+  color: black;
+  text-align: center;
+  background-color: beige;
+  border: 3px black;
+  padding: 5px;
+  border-radius: 5%;
 }
 </style>
 
@@ -59,7 +63,8 @@
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .text("testing");
+      .html("<h5>HEADING</h5><p>This is the internal text.</p>");
+    
   
   //
   d3.select("#circleBasicTooltip")
