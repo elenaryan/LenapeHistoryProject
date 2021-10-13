@@ -32,13 +32,13 @@
 
 </head><!--head-->
 <body>
-
-
-<div id="my_dataviz"></div>
+<div id="my_dataviz" >
+  <object id="tree_attempt" data="./summer_tree.svg" type="image/svg+xml"></object>
+</div>
 <script>
 
   // Start by creating the svg area
-  var svg1 = d3.select("#my_dataviz")
+  var svg1 = d3.select("#my_dataviz").select("#tree_attempt")
     .append("svg")
       .attr("width", 400)
       .attr("height", 400)
@@ -57,6 +57,9 @@
     .attr("cy", 150)
     .attr("r", 40)
     .attr("fill", "#fe23a2")
+
+
+
   // create a tooltip
   var tooltip1 = d3.select("#my_dataviz")
     .append("div")
@@ -65,13 +68,22 @@
       .attr("class", "treeTip")
       .html("<h5>HEADING</h5><p>This is the internal text.</p>");
     
-  
+  var tooltip2 = d3.select("#my_dataviz")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .attr("class", "treeTip")
+      .html("<h5>Heading2</h5><p>This is the second internal text.</p>");
   //
-  d3.select("#circleBasicTooltip")
+  d3.select("#tree_attempt")
     .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip1.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
     .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
   
+  d3.select("#anothaOne")
+    .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
+    .on("mousemove", function(){return tooltip2.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
+    .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
   </script>
 
 </body><!--body-->
