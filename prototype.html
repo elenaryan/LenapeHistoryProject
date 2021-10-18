@@ -28,17 +28,23 @@
   padding: 5px;
   border-radius: 5%;
 }
+
+.hackingSVG {
+  background-image: url("./summer_tree.svg");
+  height: 500px;
+  width: 500px;
+}
 </style>
 
 </head><!--head-->
 <body>
-<div id="my_dataviz" >
-  <object id="tree_attempt" data="./summer_tree.svg" type="image/svg+xml"></object>
+<div id="my_dataviz" class="hackingSVG" >
+  <!--object id="tree_attempt" data="./summer_tree.svg" type="image/svg+xml" style="z-index: 900;"></object-->
 </div>
 <script>
 
   // Start by creating the svg area
-  var svg1 = d3.select("#my_dataviz").select("#tree_attempt")
+  var svg1 = d3.select("#my_dataviz")
     .append("svg")
       .attr("width", 400)
       .attr("height", 400)
@@ -56,7 +62,7 @@
     .attr("cx", 200)
     .attr("cy", 150)
     .attr("r", 40)
-    .attr("fill", "#fe23a2")
+    .attr("fill", "transparent")
 
 
 
@@ -75,7 +81,7 @@
       .attr("class", "treeTip")
       .html("<h5>Heading2</h5><p>This is the second internal text.</p>");
   //
-  d3.select("#tree_attempt")
+  d3.select("#my_dataviz")
     .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip1.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
     .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
