@@ -38,8 +38,8 @@
 
 .treebackground {
   background-image: url("./treering.png");
-  height: 500px;
-  width: 500px;
+  height: 300px;
+  width: 300px;
   float: left;
 }
 </style>
@@ -62,8 +62,8 @@
 
   var trunksvg = d3.select("#tree_rings")
     .append("svg")
-      .attr("width", 500)
-      .attr("height", 500)
+      .attr("width", 300)
+      .attr("height", 300)
   
   // Append a circle
   /*
@@ -75,7 +75,7 @@
     .attr("fill", "#69b3a2")
   */
   svg1.append("circle")
-    .attr("id", "anothaOne")
+    .attr("id", "branches")
     .attr("cx", 260)
     .attr("cy", 140)
     .attr("r", 140)
@@ -134,18 +134,42 @@
     .style("position", "absolute")
     .style("visibility", "hidden")
     .attr("class", "treeTip")
-    .html("<h2>I swear I will replace this</h2>");
+    .html("<h2>tree ring on click</h2>");
+
+
+  var branchinfo = d3.select("#my_dataviz")
+    .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .attr("class", "treeTip")
+    .html("<h2>branch on click</h2>");
+
+  var treetrunkinfo = d3.select("#my_dataviz")
+    .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .attr("class", "treeTip")
+    .html("<h2>tree trunk on click</h2>");
+
+  var rootinfo = d3.select("#my_dataviz")
+    .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .attr("class", "treeTip")
+    .html("<h2>root on click</h2>");
   
   //
   d3.select("#roots")
     .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip1.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
-    .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
+    .on("mouseout", function(){return tooltip1.style("visibility", "hidden");})
+    .on("click", function(){return toggleVis(rootinfo);});
   
-  d3.select("#anothaOne")
+  d3.select("#branches")
     .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip2.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
-    .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
+    .on("mouseout", function(){return tooltip2.style("visibility", "hidden");})
+    .on("click", function(){return toggleVis(branchinfo);});
 
   d3.select("#tree_rings")
     .on("mouseover", function(){return trunktip.style("visibility", "visible");})
@@ -156,7 +180,8 @@
   d3.select("#trunk")
     .on("mouseover", function(){return treetrunk.style("visibility", "visible");})
     .on("mousemove", function(){return treetrunk.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
-    .on("mouseout", function(){return treetrunk.style("visibility", "hidden");});
+    .on("mouseout", function(){return treetrunk.style("visibility", "hidden");})
+    .on("click", function(){return toggleVis(treetrunkinfo);});
   
 
   function toggleVis( element ) {
