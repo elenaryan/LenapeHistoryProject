@@ -33,6 +33,14 @@
   background-image: url("./summer_tree.svg");
   height: 500px;
   width: 500px;
+  float: left;
+}
+
+.treebackground {
+  background-image: url("./treering.png");
+  height: 500px;
+  width: 500px;
+  float: left;
 }
 </style>
 
@@ -41,47 +49,95 @@
 <div id="my_dataviz" class="hackingSVG" >
   <!--object id="tree_attempt" data="./summer_tree.svg" type="image/svg+xml" style="z-index: 900;"></object-->
 </div>
+
+
+<div id="tree_rings" class="treebackground"></div>
 <script>
 
   // Start by creating the svg area
   var svg1 = d3.select("#my_dataviz")
     .append("svg")
-      .attr("width", 400)
-      .attr("height", 400)
+      .attr("width", 500)
+      .attr("height", 500)
+
+  var trunksvg = d3.select("#tree_rings")
+    .append("svg")
+      .attr("width", 500)
+      .attr("height", 500)
   
   // Append a circle
+  /*
   svg1.append("circle")
     .attr("id", "circleBasicTooltip")
     .attr("cx", 150)
     .attr("cy", 200)
     .attr("r", 40)
     .attr("fill", "#69b3a2")
-  
+  */
   svg1.append("circle")
     .attr("id", "anothaOne")
-    .attr("cx", 200)
-    .attr("cy", 150)
-    .attr("r", 40)
+    .attr("cx", 260)
+    .attr("cy", 140)
+    .attr("r", 140)
+    .attr("fill", "transparent")
+
+  svg1.append("rect")
+    .attr("id", "roots")
+    .attr("x", 150)
+    .attr("y", 300)
+    .attr("width", 220)
+    .attr("height", 150)
+    .attr("fill", "transparent")
+
+  svg1.append("rect")
+    .attr("id", "trunk")
+    .attr("x", 240)
+    .attr("y", 220)
+    .attr("width", 50)
+    .attr("height", 100)
     .attr("fill", "transparent")
 
 
 
   // create a tooltip
+  var interiorHTML = "<h5>Roots</h5><p>This is the root title i hope.</p>";
   var tooltip1 = d3.select("#my_dataviz")
     .append("div")
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .html("<h5>HEADING</h5><p>This is the internal text.</p>");
+      .html(interiorHTML);
     
   var tooltip2 = d3.select("#my_dataviz")
     .append("div")
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .html("<h5>Heading2</h5><p>This is the second internal text.</p>");
+      .html("<h5>Heading2</h5><p>This is the tree leaves and branches.</p>");
+
+  var treetrunk = d3.select("#my_dataviz")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .attr("class", "treeTip")
+      .html("<h5>TREE TRUNK</h5>");
+
+  var trunktip = d3.select("#tree_rings")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .attr("class", "treeTip")
+      .html("<h5>Tree Trunk</h5><p>This is the trunk's internal text</p>");   
+
+  var trunkinfo = d3.select("#tree_rings")
+    .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .attr("class", "treeTip")
+    .html("<h2>I swear I will replace this</h2>");
+  
   //
-  d3.select("#my_dataviz")
+  d3.select("#roots")
     .on("mouseover", function(){return tooltip1.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip1.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
     .on("mouseout", function(){return tooltip1.style("visibility", "hidden");});
@@ -90,10 +146,35 @@
     .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
     .on("mousemove", function(){return tooltip2.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
     .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
+
+  d3.select("#tree_rings")
+    .on("mouseover", function(){return trunktip.style("visibility", "visible");})
+    .on("mousemove", function(){return trunktip.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
+    .on("mouseout", function(){return trunktip.style("visibility", "hidden");})
+    .on("click", function(){return toggleVis(trunkinfo);});
+
+  d3.select("#trunk")
+    .on("mouseover", function(){return treetrunk.style("visibility", "visible");})
+    .on("mousemove", function(){return treetrunk.style("top", (event.pageY+5)+"px").style("left",(event.pageX+5)+"px");})
+    .on("mouseout", function(){return treetrunk.style("visibility", "hidden");});
+  
+
+  function toggleVis( element ) {
+    if (element.style("visibility") == "visible") {
+      return element.style("visibility", "hidden");
+    } else {
+      return element.style("visibility", "visible");
+    }
+  }
+
+
   </script>
 
 </body><!--body-->
 
+
+<!-- TODAY add the click/toggle functionality, add content, write down exactly why I can't do 
+precisely what they're looking for without an inordinate amount of work-->
 
 
 
