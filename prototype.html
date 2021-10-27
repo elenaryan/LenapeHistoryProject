@@ -8,6 +8,9 @@
      We definitely want an svg for these bad boys so that we can chart the paths
      for the things that we want to be able to hover over/click on or whatever 
      Demonstrating the functionality of image mapping with a simple example
+
+
+     Sept/Oct -- switch to d3 (not possible to do this with any real functionality w/o d3.js)
 -->
 <html lang="en">
 <script src="https://d3js.org/d3.v4.min.js" ></script>
@@ -42,6 +45,23 @@
   width: 300px;
   float: left;
 }
+
+.infoClick {
+  position: absolute;
+  float: left;
+  width: 50%;
+  background-color: white;
+  position:fixed;
+  top: 5%;
+  left: center;
+  border-radius: 5%;
+  border: black 2px solid;
+  padding: 15px;
+}
+
+.infoClick img {
+  max-width: 100%;
+}
 </style>
 
 </head><!--head-->
@@ -66,14 +86,8 @@
       .attr("height", 300)
   
   // Append a circle
-  /*
-  svg1.append("circle")
-    .attr("id", "circleBasicTooltip")
-    .attr("cx", 150)
-    .attr("cy", 200)
-    .attr("r", 40)
-    .attr("fill", "#69b3a2")
-  */
+
+  
   svg1.append("circle")
     .attr("id", "branches")
     .attr("cx", 260)
@@ -100,7 +114,7 @@
 
 
   // create a tooltip
-  var interiorHTML = "<h5>Roots</h5><p>This is the root title i hope.</p>";
+  var interiorHTML = "<h5>Roots</h5>";
   var tooltip1 = d3.select("#my_dataviz")
     .append("div")
       .style("position", "absolute")
@@ -113,28 +127,29 @@
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .html("<h5>Heading2</h5><p>This is the tree leaves and branches.</p>");
+      .html("<h5>Leaves and Brances</h5>");
 
   var treetrunk = d3.select("#my_dataviz")
     .append("div")
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .html("<h5>TREE TRUNK</h5>");
+      .html("<h5>Tree Trunk</h5>");
 
   var trunktip = d3.select("#tree_rings")
     .append("div")
       .style("position", "absolute")
       .style("visibility", "hidden")
       .attr("class", "treeTip")
-      .html("<h5>Tree Trunk</h5><p>This is the trunk's internal text</p>");   
+      .html("<h5>Tree Rings</h5>");   
 
   var trunkinfo = d3.select("#tree_rings")
     .append("div")
     .style("position", "absolute")
     .style("visibility", "hidden")
     .attr("class", "treeTip")
-    .html("<h2>tree ring on click</h2>");
+    .attr("class", "infoClick")
+    .html("<h2>Tree Rings</h2> </br> <img src='./img/trunkrings1.png'> <img src='./img/trunkrings2.png'>");
 
 
   var branchinfo = d3.select("#my_dataviz")
@@ -142,21 +157,24 @@
     .style("position", "absolute")
     .style("visibility", "hidden")
     .attr("class", "treeTip")
-    .html("<h2>branch on click</h2>");
+    .attr("class", "infoClick")
+    .html("<h2>Tree Branches</h2>");
 
   var treetrunkinfo = d3.select("#my_dataviz")
     .append("div")
     .style("position", "absolute")
     .style("visibility", "hidden")
     .attr("class", "treeTip")
-    .html("<h2>tree trunk on click</h2>");
+    .attr("class", "infoClick")
+    .html("<h2>Tree Trunk</h2>");
 
   var rootinfo = d3.select("#my_dataviz")
     .append("div")
     .style("position", "absolute")
     .style("visibility", "hidden")
     .attr("class", "treeTip")
-    .html("<h2>root on click</h2>");
+    .attr("class", "infoClick")
+    .html("<h2>Tree Roots</h2> ");
   
   //
   d3.select("#roots")
@@ -197,9 +215,6 @@
 
 </body><!--body-->
 
-
-<!-- TODAY add the click/toggle functionality, add content, write down exactly why I can't do 
-precisely what they're looking for without an inordinate amount of work-->
 
 
 
